@@ -1,0 +1,26 @@
+{
+  "name": "dbsaver",
+  "version": "1.0.0",
+  "description": "Listen and save data from device to database server",
+  "main": "index.js",
+  "repository": "https://github.com/vanducvo/DBSaver.git",
+  "author": "Van Duc Vo",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "nyc mocha test/"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.2",
+    "nodemon": "^2.0.3",
+    "nyc": "^15.0.1",
+    "sinon": "^9.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mqtt": "^4.0.1",
+    "random": "^2.2.0",
+    "winston": "^3.2.1"
+  }
+}
