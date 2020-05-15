@@ -4,26 +4,24 @@ const logger = require('../utils/logger');
 let client = null;
 /**
  * @param {String} url 
- * @param {Array.<String>} topics  topic[0] is subcribe, topic[1] is publisher
+ * @param {Array.<String>} topic  is subcribe
  * @param {string} username 
  * @param {string} password
  * @returns Broker Object
  * @description Connect To EMQX Broker
  */
-function connect(url, topics, AppID, username, password){
+function connect(url, topic, AppID, username, password){
     client = mqtt.connect(url, {
         clientId: AppID,
         username: username,
         password: password
     });
 
-    for (let topic of topics){
-        client.subscribe(topic, function(err){
-            if(err){
-                logger.error(err);
-            }
-        });
-    }
+    client.subscribe(topic, function(err){
+        if(err){
+            logger.error(err);
+        }
+    });
 
     return client;
 }
