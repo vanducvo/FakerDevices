@@ -8,6 +8,10 @@
 5. **TIME_SEND**: thời gian gửi định kỳ
 6. **SUBCRIBE_TOPIC**: topic thiết bị gửi thông tin
 7. **PUBLISH_TOPIC**: topic thiết bị nhận thông tin
+
+## Sau khi thiết đặt
+1. install dependencies: `yarn install`
+2. run test : `npm run test` hoặc`yarn run test`
 ## Run
 1. với `nodemon`: `npm run dev` hoặc `yarn run dev`
 2. với `node`: `npm start` hoặc `yarn start`
