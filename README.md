@@ -16,5 +16,6 @@
 1. với `nodemon`: `npm run dev` hoặc `yarn run dev`
 2. với `node`: `npm start` hoặc `yarn start`
 
-
-## Tính năng nhận và thay đổi thông số  từ **SUBCRIBE_TOPIC** đang phát triển ...
+## Tính năng fake thông số  GPS, SoilMoisture
+## Tính năng subcribe topic T_4 thay đổi thông số motor
+## Dashboard đang phát triển ...
