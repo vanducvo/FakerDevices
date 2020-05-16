@@ -4,6 +4,7 @@ const {EventEmitter} = require('events');
  */
 class Motor extends EventEmitter{
     constructor(id){
+        super();
         this.id = id;
         this.level = 0;
         this.status = 0;

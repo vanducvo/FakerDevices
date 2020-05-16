@@ -3,9 +3,11 @@ require('dotenv').config();
 const {connect, getBroker} = require('./controllers/mqtt');
 const faker = require('./services/faker');
 const publisher = require('./services/publisher');
+const subcriber = require('./services/subcriber');
 
 const SoilMoisture = require('./devices/SoilMoisture');
 const GPS = require('./devices/GPS');
+const Motor = require('./devices/Motor');
 const utils = require('./utils/utils');
 
 // Enviroment
@@ -26,7 +28,7 @@ let nSM = Number(process.env.SOIL_MOISTURE);
 
 for(let i = 1; i <= nSM; i++){
     let device = new SoilMoisture(i);
-    device.on('change', data => console.log('Change', data));
+    // device.on('change', data => console.log('Change', data));
     sM.set(i, device);
 }
 
@@ -40,10 +42,22 @@ let nGps = Number(process.env.GPS);
 
 for(let i = 1; i <= nGps; i++){
     let device = new GPS(i);
-    device.on('change', data => console.log('Change', data));
+    // device.on('change', data => console.log('Change', data));
     gps.set(i, device);
 }
 
 faker(gps.values(), utils.generateValueGPS, timeChange);
 
 publisher(getBroker(), topics[0], gps.values(), timeSend);
+
+// Motor
+let motor = new Map();
+let nMotor = Number(process.env.MOTOR);
+
+for(let i = 1; i <= nMotor; i++){
+    let device = new Motor(i);
+    device.on('change', data => console.log('Change', data));
+    motor.set(i, device);
+}
+
+subcriber(getBroker(), motor, utils.conditionMotor, utils.extractorMotor);
