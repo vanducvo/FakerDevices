@@ -1,12 +1,10 @@
 function faker(devices, generate, time){
-    let intervals = new Map();
-    for (let device of devices){
-        let timerid = setInterval(() => {
+    devices = [...devices];
+    return setInterval(() => {
+        for (let device of devices){
             device.setValue(...generate());
-        }, time); 
-        intervals.set(device.id, timerid)
-    }
-    return intervals;
+        }
+    }, time);
 }
 
 module.exports = faker;
