@@ -19,9 +19,15 @@
     "sinon": "^9.0.2"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
     "mqtt": "^4.0.1",
     "random": "^2.2.0",
+    "serve-static": "^1.14.1",
+    "socket.io": "^2.3.0",
+    "tailwindcss": "^1.4.6",
     "winston": "^3.2.1"
   }
 }

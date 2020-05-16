@@ -18,4 +18,4 @@
 
 ## Tính năng fake thông số  GPS, SoilMoisture
 ## Tính năng subcribe topic T_4 thay đổi thông số motor
-## Dashboard đang phát triển ...
+## Dashboard ở  `localhost:8888`

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/tailwind.min.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <script src="/public/js/socket.io.js"></script>
+    <title>Dashoard</title>
+</head>
+<body>
+    <header>
+        <h1 class="text-white bg-green-700 py-2 pl-5 text-2xl subpixel-antialiased font-sans font-semibold">Devices Faker</h1>
+    </header>
+    <section class="h-full bg-green-100">
+        <div class="flex flex-grow flex-wrap py-10 justify-center bg-green-100">
+            <table class="table w-full m-2 md:w-1/4 md:mx-2">
+                <thead>
+                  <tr>
+                    <th class="border border-teal-900 px-4 py-2 w-1/6">GPS</th>
+                    <th class="border border-teal-900 px-4 py-2 w-1/6">status</th>
+                    <th class="border border-teal-900 px-4 py-2 w-2/6">longtitude</th>
+                    <th class="border border-teal-900 px-4 py-2 w-2/6">latitude</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for (let device of g_devices){%>
+                    <tr id="id4_<%= device.id %>">
+                      <td class="border border-teal-900 px-4 py-2 w-1/5"><%= device.id %></td>
+                      <td class="border border-teal-900 px-4 py-2 w-1/5"><%= device.status %></td>
+                      <td class="border border-teal-900 px-4 py-2 w-1/5"><%= device.longtitude %></td>
+                      <td class="border border-teal-900 px-4 py-2 w-1/5"><%= device.latitude %></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <table class="table w-full m-2 md:w-1/4 md:mx-2">
+                <thead>
+                  <tr>
+                    <th class="border border-teal-900 px-4 py-2 w-1/5">Soil Moisture</th>
+                    <th class="border border-teal-900 px-4 py-2 w-2/5">status</th>
+                    <th class="border border-teal-900 px-4 py-2 w-2/5">value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for (let device of sm_devices){%>
+                    <tr id="id7_<%= device.id %>">
+                      <td class="border border-teal-900 px-4 py-2 w-1/5"><%= device.id %></td>
+                      <td class="border border-teal-900 px-4 py-2 w-1/5"><%= device.status %></td>
+                      <td class="border border-teal-900 px-4 py-2 w-1/5"><%= device.moisture %></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <table class="table w-full m-2 md:w-1/4 md:mx-2">
+                <thead>
+                  <tr>
+                    <th class="border border-teal-900 px-4 py-2 w-1/5">Motor</th>
+                    <th class="border border-teal-900 px-4 py-2 w-2/5">status</th>
+                    <th class="border border-teal-900 px-4 py-2 w-2/5">value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for (let device of m_devices){%>
+                    <tr id="id9_<%= device.id %>">
+                      <td class="border border-teal-900 px-4 py-2 w-1/5"><%= device.id %></td>
+                      <td class="border border-teal-900 px-4 py-2 w-1/5"><%= device.status %></td>
+                      <td class="border border-teal-900 px-4 py-2 w-1/5"><%= device.level %></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <form class="w-full p-5 m-2 md:w-1/5 bg-green-200 rounded">
+                <div class="md:flex md:items-center mb-6">
+                  <div class="md:w-1/3">
+                    <label class="block text-teal-900 font-bold md:text-right mb-1 md:mb-0 pr-4" for="id">
+                      Motor ID
+                    </label>
+                  </div>
+                  <div class="md:w-2/3">
+                    <select class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="id" name="level" >
+                      <% for (let device of m_devices){%>
+                        <option><%= device.id %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                  <div class="md:w-1/3">
+                    <label class="block text-teal-900 font-bold md:text-right mb-1 md:mb-0 pr-4" for="level">
+                      Level
+                    </label>
+                  </div>
+                  <div class="md:w-2/3">
+                    <select class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="level" name="level" >
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+            
+                  </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                  <div class="md:w-1/3"></div>
+                  <label class="md:w-2/3 block text-teal-900 font-bold">
+                    <input id = "status" class="mr-2 leading-tight" type="checkbox">
+                    <span class="text-sm">
+                      OFF
+                    </span>
+                  </label>
+                </div>
+                <div class="md:flex md:items-center">
+                  <div class="md:w-1/3"></div>
+                  <div class="md:w-2/3">
+                    <button id="control" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                      Control Motor
+                    </button>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </section>
+    <script>
+      let socket = io();
+      
+      let gpss = document.querySelectorAll('tr[id^=id4]');
+      let sms = document.querySelectorAll('tr[id^=id7]');
+      let ms = document.querySelectorAll('tr[id^=id9]');
+      let gpsMapper = new Map();
+      let smMapper = new Map();
+      let mMapper = new Map();
+      for (let gps of gpss){
+        gpsMapper.set(gps.id, gps);
+      }
+      for (let sm of sms){
+        smMapper.set(sm.id, sm);
+      }
+      for (let m of ms){
+        mMapper.set(m.id, m);
+      }
+      socket.on('gchange', (data) => {
+        let children = gpsMapper.get(data.device_id).children;
+        children[1].textContent = data.value[0];
+        children[2].textContent = data.value[1];
+        children[3].textContent = data.value[2];
+      });
+
+      socket.on('smchange', (data) => {
+        let children = smMapper.get(data.device_id).children;
+        children[1].textContent = data.value[0];
+        children[2].textContent = data.value[1];
+      });
+
+      socket.on('mchange', (data) => {
+        let children = mMapper.get(data.device_id).children;
+        children[1].textContent = data.value[0];
+        children[2].textContent = data.value[1];
+      });
+
+      document.getElementById("control").addEventListener('click', (e) => {
+        let data = {
+          id: Number(document.getElementById('id').value),
+          status: Number(document.getElementById('status').checked) ? 0 : 1,
+          level: Number(document.getElementById('level').value)
+        };
+        fetch('/control', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+      });
+      
+    </script>
+</body>
+</html>
