@@ -1,4 +1,8 @@
-class Motor {
+const {EventEmitter} = require('events');
+/**
+ * Motor device
+ */
+class Motor extends EventEmitter{
     constructor(id){
         this.id = id;
         this.level = 0;
@@ -8,6 +12,7 @@ class Motor {
     setValue(level, status = 1){
         this.level = level;
         this.status = status;
+        this.emit('change', this.toJSON());
     }
 
     toJSON(){

@@ -1,8 +1,11 @@
+const {EventEmitter} = require('events');
+
 /**
  * GPS device
  */
-class GPS {
+class GPS extends EventEmitter{
     constructor(id){
+        super()
         this.id = id
         this.latitude = 0;
         this.longtitude = 0;
@@ -13,6 +16,7 @@ class GPS {
         this.longtitude = longtitude;
         this.latitude = latitude;
         this.status = status;
+        this.emit('change', this.toJSON());
     }
 
     toJSON(){

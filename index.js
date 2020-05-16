@@ -25,7 +25,9 @@ let sM = new Map();
 let nSM = Number(process.env.SOIL_MOISTURE);
 
 for(let i = 1; i <= nSM; i++){
-    sM.set(i, new SoilMoisture(i));
+    let device = new SoilMoisture(i);
+    device.on('change', data => console.log('Change', data));
+    sM.set(i, device);
 }
 
 faker(sM.values(), utils.generateValueSoilMoisture, timeChange);
@@ -34,10 +36,12 @@ publisher(getBroker(), topics[0], sM.values(), timeSend);
 
 // GPS
 let gps = new Map();
-let ngps = Number(process.env.GPS);
+let nGps = Number(process.env.GPS);
 
-for(let i = 1; i <= nSM; i++){
-    gps.set(i, new GPS(i));
+for(let i = 1; i <= nGps; i++){
+    let device = new GPS(i);
+    device.on('change', data => console.log('Change', data));
+    gps.set(i, device);
 }
 
 faker(gps.values(), utils.generateValueGPS, timeChange);
