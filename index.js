@@ -72,6 +72,7 @@ for(let i = 1; i <= nMotor; i++){
     motor.set(i, device);
 }
 
+publisher(getBroker(), topics[0], motor.values(), timeSend);
 subcriber(getBroker(), motor, utils.conditionMotor, utils.extractorMotor);
 
 app.get('/', function(req, res){
