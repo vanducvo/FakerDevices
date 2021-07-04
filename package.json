@@ -26,7 +26,7 @@
     "mqtt": "^4.0.1",
     "random": "^2.2.0",
     "serve-static": "^1.14.1",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "tailwindcss": "^1.4.6",
     "winston": "^3.2.1"
   }
